@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title><%= title %></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+      <div class="container">
+        <div class="row text-white">
+          <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+            <h1 class="h4 py-2">RUN A BOT VOTER</h1>
+            <div class="px-2">
+              <form action="/add-bot" id="form" method="POST" class="justify-content-center">
+
+                <div class="form-group">
+                  <label for="category">Category</label>
+                  <select class="form-control" name="category" id="category">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="subcategory">Subcategory</label>
+                  <select class="form-control" name="subcategory" id="subcategory">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="option">Voting Option</label>
+                  <select class="form-control" name="option" id="option">
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">Launch</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="overlay" style="display:none;">
+    <div class="loader">
+      <div class="spinner"></div>
+      <br />
+      Loading...
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+    integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    function showLoading() {
+      $('#overlay').show();
+    }
+
+    function dismissLoading() {
+      $('#overlay').hide();
+    }
+
+    function fetchOptions(category, subcategory) {
+      if (!subcategory || subcategory.length < 2) {
+        $('#option').html('');
+        return;
+      }
+      showLoading();
+      axios.post('/voting-options/', {
+        category,
+        subcategory
+      })
+        .then(function (response) {
+          // handle success
+          const optionsArr = response.data;
+          console.log(optionsArr);
+          const options = optionsArr.map(opt => `<option value='${opt}'>${opt}</option>`)
+          $('#option').html('<option value="" selected="true">Select Option</option>' + options.join(''));
+          dismissLoading();
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+
+    function fetchSubCategories(category) {
+      if (!category || category.length < 2) {
+        $('#option').html('');
+        $('#subcategory').html('');
+        return;
+      }
+      showLoading();
+      axios.post('/subcategories/', {
+        category
+      })
+        .then(function (response) {
+          // handle success
+          const subcategories = response.data;
+          console.log(subcategories);
+          const options = subcategories.map(category => `<option value='${category}'>${category}</option>`)
+          $('#subcategory').html('<option value="" selected="true">Select Sub Category</option>' + options.join(''));
+          $('#option').html('');
+          dismissLoading();
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+
+    function fetchCategories() {
+      showLoading();
+      axios.get('/categories')
+        .then(function (response) {
+          // handle success
+          const categories = response.data;
+          const options = categories.map(category => `<option value='${category}'>${category}</option>`)
+          $('#category').html('<option value="" selected="true">Select Category</option>' + options.join(''));
+          $('#subcategory').html('');
+          $('#option').html('');
+          dismissLoading();
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+
+    $(function () {
+      fetchCategories();
+    });
+
+    $('#category').on('change', function () {
+      fetchSubCategories(this.value);
+    });
+    $('#subcategory').on('change', function () {
+      const category = $("#category").val();
+      fetchOptions(category, this.value);
+    });
+
+  </script>
+
+
+</body>
+
+</html>
