@@ -15,7 +15,6 @@ const fs = require('fs');
 var CronJob = require('cron').CronJob;
 var job = new CronJob('* * * * *', async function () {
   try {
-    console.log('Voting...')
     const rawdata = fs.readFileSync('data.json');
     const bot = JSON.parse(rawdata);
     const { category, subcategory, option } = bot;
@@ -26,13 +25,15 @@ var job = new CronJob('* * * * *', async function () {
       const proxy = await utils.getProxy();
       const page = await context.newPage({ args: [`--proxy-server=${proxy.ip}:${proxy.port}`] });
 
-
+      console.log('Voting...');
       await Scraper.Vote(page, category, subcategory, option);
 
       await page.close();
       await context.close();
       await browser.close();
       console.log('Voting finished successfully')
+    } else {
+      console.log('Error reading data file');
     }
   } catch (error) {
     console.log('Voting failed')

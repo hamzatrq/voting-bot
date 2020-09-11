@@ -71,10 +71,19 @@ utils.getVotingOptions = async (page, category, subCategory) => {
 utils.Vote = async (page, category, subCategory, optionText) => {
     await page.goto('https://www.votebolv.com/');
     await page.waitFor(4000)
+    console.log('Visited Website');
+    await page.screenshot({ path: './public/step-1.png', fullPage: true });
+
     await clickCardIncludesText(page, category);
     await page.waitFor(2000);
+    console.log('Category Selected');
+    await page.screenshot({ path: './public/step-2.png', fullPage: true });
+
+
     await clickCardIncludesText(page, subCategory);
     await page.waitFor(2000);
+    console.log('Subcategory Selected');
+    await page.screenshot({ path: './public/step-3.png', fullPage: true });
 
     const labelsEls = await page.$$('.custom-control-label');
     for (let i = 0; i < labelsEls.length; i++) {
@@ -82,8 +91,19 @@ utils.Vote = async (page, category, subCategory, optionText) => {
         if (option.toLowerCase().includes(optionText.toLowerCase())) {
             labelsEls[i].click();
             await page.waitFor(1000);
-            console.log('Taking Screenshot')
-            await page.screenshot({ path: './public/vote.png', fullPage: true });
+            console.log('Voting Option Selected');
+            await page.screenshot({ path: './public/step-4.png', fullPage: true });
+
+
+            (await page.$$('.alerts-wysiwyg a'))[1].click();
+            await page.waitFor(1000);
+            console.log('Review My Balot clicked');
+            await page.screenshot({ path: './public/step-5.png', fullPage: true });
+
+            (await page.$$('button'))[1].click();
+            await page.waitFor(4000);
+            console.log('Submit Balot Clicked');
+            await page.screenshot({ path: './public/step-6.png', fullPage: true });
             break;
         }
     }
