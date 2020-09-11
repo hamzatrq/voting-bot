@@ -13,7 +13,7 @@ const Scraper = require('./utils/crawler-utils');
 const fs = require('fs');
 
 var CronJob = require('cron').CronJob;
-var job = new CronJob('* * * * *', async function () {
+var job = new CronJob('*/5 * * * *', async function () {
   try {
     const rawdata = fs.readFileSync('data.json');
     const bot = JSON.parse(rawdata);
