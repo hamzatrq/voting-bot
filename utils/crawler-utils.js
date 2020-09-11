@@ -70,7 +70,7 @@ utils.getVotingOptions = async (page, category, subCategory) => {
 
 utils.Vote = async (page, category, subCategory, optionText) => {
     await page.goto('https://www.votebolv.com/');
-    await page.waitFor(4000)
+    await page.waitFor(8000)
     console.log('Visited Website');
     await page.screenshot({ path: './public/step-1.png', fullPage: true });
 
@@ -94,13 +94,14 @@ utils.Vote = async (page, category, subCategory, optionText) => {
             console.log('Voting Option Selected');
             await page.screenshot({ path: './public/step-4.png', fullPage: true });
 
-
-            (await page.$$('.alerts-wysiwyg a'))[1].click();
+            let tEl = await page.$$('a.d-block');
+            await tEl[1].click();
             await page.waitFor(1000);
             console.log('Review My Balot clicked');
             await page.screenshot({ path: './public/step-5.png', fullPage: true });
 
-            (await page.$$('button'))[1].click();
+            tEl = await page.$$('button');
+            await tEl[1].click();
             await page.waitFor(4000);
             console.log('Submit Balot Clicked');
             await page.screenshot({ path: './public/step-6.png', fullPage: true });
