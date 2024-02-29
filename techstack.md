@@ -3,12 +3,12 @@
 ## Tech Stack
 hamzatrq/voting-bot is built on the following main stack:
 
-- [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
-- [Cron](https://directory.fsf.org/wiki/Cron) – Background Processing
 - [EJS](https://ejs.co/) – Templating Languages & Extensions
-- [axios](https://github.com/mzabriskie/axios) – Javascript Utilities & Libraries
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
+- [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
+- [Cron](https://directory.fsf.org/wiki/Cron) – Background Processing
 - [Puppeteer](https://github.com/GoogleChrome/puppeteer) – Headless Browsers
+- [axios](https://github.com/mzabriskie/axios) – Javascript Utilities & Libraries
 
 Full tech stack [here](/techstack.md)
 
@@ -18,12 +18,12 @@ Full tech stack [here](/techstack.md)
 ## Tech Stack
 hamzatrq/voting-bot is built on the following main stack:
 
-- <img width='25' height='25' src='https://img.stackshare.io/service/1163/hashtag.png' alt='ExpressJS'/> [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
-- <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
-- <img width='25' height='25' src='https://img.stackshare.io/service/2416/default_274ed9bcc98502018f007cfcd8c09f3514d3d319.png' alt='Cron'/> [Cron](https://directory.fsf.org/wiki/Cron) – Background Processing
 - <img width='25' height='25' src='https://img.stackshare.io/no-img-open-source.png' alt='EJS'/> [EJS](https://ejs.co/) – Templating Languages & Extensions
-- <img width='25' height='25' src='https://img.stackshare.io/no-img-open-source.png' alt='axios'/> [axios](https://github.com/mzabriskie/axios) – Javascript Utilities & Libraries
+- <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
+- <img width='25' height='25' src='https://img.stackshare.io/service/1163/hashtag.png' alt='ExpressJS'/> [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
+- <img width='25' height='25' src='https://img.stackshare.io/service/2416/default_274ed9bcc98502018f007cfcd8c09f3514d3d319.png' alt='Cron'/> [Cron](https://directory.fsf.org/wiki/Cron) – Background Processing
 - <img width='25' height='25' src='https://img.stackshare.io/service/7553/puppeteer.png' alt='Puppeteer'/> [Puppeteer](https://github.com/GoogleChrome/puppeteer) – Headless Browsers
+- <img width='25' height='25' src='https://img.stackshare.io/no-img-open-source.png' alt='axios'/> [axios](https://github.com/mzabriskie/axios) – Javascript Utilities & Libraries
 
 Full tech stack [here](/techstack.md)
 
@@ -34,7 +34,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [hamzatrq/voting-bot](https://github.com/hamzatrq/voting-bot)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|15<br/>Tools used|01/05/24 <br/>Report generated|
+|15<br/>Tools used|02/29/24 <br/>Report generated|
 |------|------|
 </div>
 
